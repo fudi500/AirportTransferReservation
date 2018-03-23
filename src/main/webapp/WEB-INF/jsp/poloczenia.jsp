@@ -15,41 +15,7 @@
 
 
 
-	
-	<br />
-	<table border="1">
-		<thead>
-			<tr>
-				<th>#</th>
-				<th>lokalizacje początkowe</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-		
 
-
-		<c:forEach var="lolalizacja" items="${startlocations}" varStatus="status">
-			<tr>
-				<td>${status.index+1}</td>
-				<td>${lolalizacja.name}</td>
-				<td><a href="delete-${lolalizacja.id}">Usuń</a><br />
-				
-			</tr>
-		</c:forEach>
-		
-		
-		</tbody>
-	</table>
-	<br />
-	<hr />
-	
-	Dodaj nową lokalizację początkową
-	<form:form modelAttribute="startlocation" method="post">
-		Nazwa: <form:input path="name" id="name"></form:input>
-		<input type="submit" value="Dodaj" />
-	</form:form>
-	
 	<br />
 	<table border="1">
 		<thead>
@@ -88,7 +54,8 @@
 	</table>
 	<br />
 	<hr />
-	
+
+
 	<hr />
 </body>
 </html>
