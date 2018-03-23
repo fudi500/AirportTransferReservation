@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pl.fudalewski.ATR.dto.StartLocationDTO;
 import pl.fudalewski.ATR.model.StartLocation;
 import pl.fudalewski.ATR.service.StartLocationService;
 
