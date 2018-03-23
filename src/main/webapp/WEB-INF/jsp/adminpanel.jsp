@@ -87,8 +87,9 @@
 		</tbody>
 	</table>
 	<br />
-	<hr />
-	
+	<a href="dodajp">Dodaj połączenie</a>
+	//link dodaje na sztywno połączenie Balice -> Krakow, z pominieciem formularza
+	 
 	<hr />
 </body>
 </html>

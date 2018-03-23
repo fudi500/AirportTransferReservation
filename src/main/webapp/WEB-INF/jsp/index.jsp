@@ -9,6 +9,6 @@
 </head>
 <body>
 	<h1>rezerwoj transfer</h1>
-	<h2>test</h2>
+	<h2><a href="admin">Panel administratora</a></h2>
 </body>
 </html>

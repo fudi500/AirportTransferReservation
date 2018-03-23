@@ -51,7 +51,12 @@ znajdz i uzupe³nij connector java dla twojej bazy danych
 ### 4. Uruchomiæ, 
 Aby uruchomiæ aplikacjê nale¿y uruchomiæ metodê "Main()" z klasy "AirportTransferReservationApplication" w pakiecie "pl.fudalewski.ATR"
 w trybie "Run AS" -> "Java Application", lub w IDE STS "Run AS" -> "Spring Boot App"
-	
+
+
+Mo¿esz równie¿ uruchomiæ komend¹ z terminala:
+```
+mvn spring-boot:run
+```
 
 ### 5. Aplikacja Web uruchomiona, dostêpna w przegl¹darce pod adresem:
 
