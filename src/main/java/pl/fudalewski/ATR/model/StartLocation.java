@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class StartLocation {
@@ -15,6 +16,7 @@ public class StartLocation {
 	@GeneratedValue
 	private Long id;
 	
+	@NotEmpty
 	private String name;
 
 
