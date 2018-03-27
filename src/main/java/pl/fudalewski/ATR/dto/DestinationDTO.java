@@ -6,7 +6,7 @@ public class DestinationDTO {
 
 	private String destinationName;
 	private String localizationName;
-	private Long ocalizationID;
+	private Long localizationID;
 
 	
 	private double price1to3;
@@ -32,11 +32,14 @@ public class DestinationDTO {
 	public void setLocalizationName(String localizationName) {
 		this.localizationName = localizationName;
 	}
-	public Long getOcalizationID() {
-		return ocalizationID;
+	
+	
+	
+	public Long getLocalizationID() {
+		return localizationID;
 	}
-	public void setOcalizationID(Long ocalizationID) {
-		this.ocalizationID = ocalizationID;
+	public void setLocalizationID(Long localizationID) {
+		this.localizationID = localizationID;
 	}
 	public double getPrice1to3() {
 		return price1to3;

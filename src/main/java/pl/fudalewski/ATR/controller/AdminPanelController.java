@@ -1,7 +1,9 @@
 package pl.fudalewski.ATR.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -12,8 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import pl.fudalewski.ATR.dao.DestinationDAO;
 import pl.fudalewski.ATR.dto.DestinationDTO;
 import pl.fudalewski.ATR.model.Destination;
 import pl.fudalewski.ATR.model.StartLocation;
@@ -44,41 +46,121 @@ public class AdminPanelController {
 			startLocationService.create(formLolalizacja);
 
 			return "redirect:/admin";
-		} // admin - < link
+		}
 	}
 
 	@RequestMapping("/delete-{id}")
-	public String deleteKot(@PathVariable("id") Long id, Model model) {
+	public String deleteStartLocation(@PathVariable("id") Long id, Model model) {
 
 		startLocationService.delete(startLocationService.findById(id));
 		return "redirect:/admin";
-
 	}
 
-	@RequestMapping("/dodajp")
-	public String dodajPoloczenie() {
+	@RequestMapping(value = "/poloczenia/add", method = RequestMethod.GET)
+	public String formularz(@ModelAttribute("destinationForm") DestinationDTO destinationDTO, Model model) {
 
-		StartLocation startLocation = new StartLocation();
-		startLocation.setName("Balice");
+		//
+		Map<String, String> localizationList = CreateLocalizationList();
 
-		startLocationService.create(startLocation);
+		model.addAttribute("localizationList", localizationList);
+		return "destinationform";
+	}
+
+	@RequestMapping(value = "/poloczenia/add", method = RequestMethod.POST)
+	public String obsluzFormularz(@ModelAttribute("destinationForm") @Valid DestinationDTO destinationDTO,
+			BindingResult result) {
 
 		Destination destination = new Destination();
-		destination.setDestinationName("Krakow");
-		destination.setPrice17to40(20.5);
 
-		destinationService.create(startLocation.getId(), destination);
-
-		return "redirect:/admin";
-
+		return SaveOrEdit(destinationDTO, result, destination);
 	}
 
-	@RequestMapping("/poloczenia")
-	public String showPoloczenia(Model model) {
+	@RequestMapping(value = "/poloczenia/{id}/edit", method = RequestMethod.GET)
+	public String editDestination(@PathVariable("id") Long id,
+			@ModelAttribute("destinationForm") DestinationDTO destinationDTO, Model model) {
 
-		model.addAttribute("destinations", findAlldestinationDTO());
+		Destination destination = destinationService.findById(id);
 
-		return "poloczenia";
+		destinationDTO.setDestinationName(destination.getDestinationName());
+		destinationDTO.setPrice1to3(destination.getPrice1to3());
+		destinationDTO.setPrice4to8(destination.getPrice4to8());
+		destinationDTO.setPrice9to16(destination.getPrice9to16());
+		destinationDTO.setPrice17to40(destination.getPrice17to40());
+		destinationDTO.setId(destination.getId());
+		destinationDTO.setLocalizationID(destination.getStartLocation().getId());
+
+		Map<String, String> localizationList = CreateLocalizationList();
+		model.addAttribute("localizationList", localizationList);
+
+		return "destinationform";
+	}
+
+	@RequestMapping(value = "/poloczenia/{id}/edit", method = RequestMethod.POST)
+	public String editDestinationPost(@PathVariable("id") Long id,
+			@ModelAttribute("destinationForm") @Valid DestinationDTO destinationDTO, BindingResult result) {
+
+		Destination destination = destinationService.findById(id);
+		return SaveOrEdit(destinationDTO, result, destination);
+
+	}
+	
+	@RequestMapping("/poloczenia/{id}/delete")
+	public String deletedestination(@PathVariable("id") Long id) {
+
+		destinationService.delete(destinationService.findById(id));
+		
+		return "redirect:/admin";
+	}
+
+	private String SaveOrEdit(@Valid DestinationDTO destinationDTO, BindingResult result, Destination destination) {
+
+		if (result.hasErrors()) {
+			// formularz nie jest uzupełniony prawidłowo
+			return "destinationform";
+		} else {
+
+			destination.setDestinationName(destinationDTO.getDestinationName());
+			destination.setPrice1to3(destinationDTO.getPrice1to3());
+			destination.setPrice4to8(destinationDTO.getPrice4to8());
+			destination.setPrice9to16(destinationDTO.getPrice9to16());
+			destination.setPrice17to40(destinationDTO.getPrice17to40());
+			// -------------------------
+
+			StartLocation startLocation;
+			if (destination.getStartLocation() == null) {
+				startLocation = startLocationService.findById(destinationDTO.getLocalizationID());
+			} else {
+				startLocation = startLocationService.findById(destinationDTO.getLocalizationID());
+
+			}
+
+			destination.setStartLocation(startLocation);
+			destinationService.create(startLocation.getId(), destination);
+			return "redirect:/admin";
+
+			//
+			// user.setFramework(new ArrayList<String>(Arrays.asList("Spring MVC", "GWT")));
+			// user.setSkill(new ArrayList<String>(Arrays.asList("Spring", "Grails",
+			// "Groovy")));
+			// user.setCountry("SG");
+			// user.setNumber(2);
+			//
+			// model.addAttribute("userForm", user);
+			//
+			// populateDefaultModel(model);
+		}
+	}
+
+	private Map<String, String> CreateLocalizationList() {
+
+		Map<String, String> localizationList = new LinkedHashMap<String, String>();
+
+		for (StartLocation startLocation : startLocationService.findAll()) {
+
+			localizationList.put(startLocation.getId().toString(), startLocation.getName());
+		}
+
+		return localizationList;
 	}
 
 	public List<DestinationDTO> findAlldestinationDTO() {

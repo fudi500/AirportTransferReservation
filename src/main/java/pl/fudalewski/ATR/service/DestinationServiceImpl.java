@@ -29,9 +29,8 @@ public class DestinationServiceImpl implements DestinationService {
 	}
 
 	
-	public void delete(StartLocation startLocation, Destination destination) {
-		// TODO Auto-generated method stub
-
+	public void delete(Destination destination) {
+		destinationDAO.delete(destination);
 	}
 
 	@Override
@@ -42,8 +41,7 @@ public class DestinationServiceImpl implements DestinationService {
 
 	@Override
 	public Destination findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return destinationDAO.findById(id).orElse(null);
 	}
 
 

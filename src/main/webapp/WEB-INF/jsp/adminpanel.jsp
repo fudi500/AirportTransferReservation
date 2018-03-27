@@ -13,15 +13,16 @@
 <body>
 
 
+	<h2>Panel administratora</h2>
 
 
-	
+	<h3>lokalizacje początkowe</h3>
 	<br />
 	<table border="1">
 		<thead>
 			<tr>
 				<th>#</th>
-				<th>lokalizacje początkowe</th>
+				<th>nazwa</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -42,7 +43,7 @@
 		</tbody>
 	</table>
 	<br />
-	<hr />
+	
 	
 	Dodaj nową lokalizację początkową
 	<form:form modelAttribute="startlocation" method="post">
@@ -50,7 +51,10 @@
 		<input type="submit" value="Dodaj" />
 	</form:form>
 	
-	<br />
+		<br />
+	<hr />
+	
+	<h3>Połączenia </h3>
 	<table border="1">
 		<thead>
 			<tr>
@@ -79,7 +83,8 @@
 					<td>${poloczenie.price4to8}</td>
 					<td>${poloczenie.price9to16}</td>
 					<td>${poloczenie.price17to40}</td>
-
+					<td><a href="poloczenia/${poloczenie.id}/edit">Edytuj </a></td>
+					<td><a href="poloczenia/${poloczenie.id}/delete">Usuń</a></td>
 				</tr>
 			</c:forEach>
 
@@ -87,9 +92,7 @@
 		</tbody>
 	</table>
 	<br />
-	<a href="dodajp">Dodaj połączenie</a>
-	//link dodaje na sztywno połączenie Balice -> Krakow, z pominieciem formularza
-	 
+	<a href="poloczenia/add">Dodaj nowe połączenie</a> 
 	<hr />
 </body>
 </html>
