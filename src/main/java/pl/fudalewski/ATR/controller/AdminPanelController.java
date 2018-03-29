@@ -162,6 +162,7 @@ public class AdminPanelController {
 
 		return localizationList;
 	}
+	
 
 	public List<DestinationDTO> findAlldestinationDTO() {
 

@@ -5,6 +5,8 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Reservation {
@@ -14,14 +16,29 @@ public class Reservation {
 		@GeneratedValue
 		private Long id;
 
+		@NotEmpty
 		private String startLocationR;
+		
+		@NotEmpty
 		private String destinationR;
+		
+		@NotNull
 		private int numberOfPeple;
+		
+		
 		private Date dateAndTimeOfService;
 		
+		
+		@NotEmpty
 		private String firstName;
+		
+		@NotEmpty
 		private String lastName;
+		
+		@NotEmpty
 		private String phone;
+		
+		@NotEmpty
 		private String email;
 		
 		

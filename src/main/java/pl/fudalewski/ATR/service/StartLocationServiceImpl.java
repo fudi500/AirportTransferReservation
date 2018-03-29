@@ -1,5 +1,8 @@
 package pl.fudalewski.ATR.service;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +42,18 @@ public class StartLocationServiceImpl implements StartLocationService {
 		return startLocationDAO.findById(id).orElse(null);
 	}
 
+	public Map<String, String> CreateLocalizationList() {
+
+		Map<String, String> localizationList = new LinkedHashMap<String, String>();
+
+		for (StartLocation startLocation : findAll()) {
+
+			localizationList.put(startLocation.getId().toString(), startLocation.getName());
+		}
+		
+
+		return localizationList;
+	}
 
 	
 }

@@ -1,6 +1,10 @@
 package pl.fudalewski.ATR.service;
 
 
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +37,9 @@ public class DestinationServiceImpl implements DestinationService {
 		destinationDAO.delete(destination);
 	}
 
-	@Override
-	public Iterable<Destination> findAllwhereStartLocation(StartLocation startLocation) {
-		// TODO Auto-generated method stub
+	public List<Destination> findByStartlocation(StartLocation startLocation){
+		destinationDAO.findByStartlocation(startLocation);
+		
 		return null;
 	}
 
@@ -49,5 +53,22 @@ public class DestinationServiceImpl implements DestinationService {
 	public Iterable<Destination> findAll() {
 		return destinationDAO.findAll();
 	}
+
+
+	@Override
+	public Map<String, String> CreateDestinationList() {
+
+		Map<String, String> destinationList = new LinkedHashMap<String, String>();
+
+		for (Destination destination : findAll()) {
+
+			destinationList.put(destination.getId().toString(), destination.getDestinationName());
+		}
+
+		return destinationList;
+	}
+
+
+
 
 }
