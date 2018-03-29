@@ -20,6 +20,7 @@ import pl.fudalewski.ATR.dto.DestinationDTO;
 import pl.fudalewski.ATR.model.Destination;
 import pl.fudalewski.ATR.model.StartLocation;
 import pl.fudalewski.ATR.service.DestinationService;
+import pl.fudalewski.ATR.service.ReservationService;
 import pl.fudalewski.ATR.service.StartLocationService;
 
 @Controller
@@ -30,6 +31,9 @@ public class AdminPanelController {
 
 	@Autowired
 	DestinationService destinationService;
+	
+	@Autowired
+	ReservationService reservationService;
 
 	@RequestMapping("/admin")
 	public String showStartlocations(Model model, @ModelAttribute("startlocation") @Valid StartLocation formLolalizacja,
@@ -37,6 +41,7 @@ public class AdminPanelController {
 
 		model.addAttribute("startlocations", startLocationService.findAll());
 		model.addAttribute("destinations", findAlldestinationDTO());
+		model.addAttribute("reservations", reservationService.findAll() );
 
 		if (result.hasErrors()) {
 			// formularz nie jest uzupełniony prawidłowo

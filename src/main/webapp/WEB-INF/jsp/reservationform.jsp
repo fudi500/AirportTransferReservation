@@ -88,8 +88,9 @@
 			<form:errors path="numberOfPeple" />
 		</c:if>
 		
-		<%-- <br />
+		 <br />
 		Data przejazdu:
+		<%--
 		<form:input path="dateAndTimeOfService" id="dateAndTimeOfService"></form:input>
 		<c:if test="${pageContext.request.method=='POST'}">
 			<form:errors path="dateAndTimeOfService" />

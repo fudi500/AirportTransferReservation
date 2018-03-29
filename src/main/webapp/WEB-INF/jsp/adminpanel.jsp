@@ -94,5 +94,51 @@
 	<br />
 	<a href="poloczenia/add">Dodaj nowe połączenie</a> 
 	<hr />
+	
+	
+	<br />
+	<h3>Rezerwacje </h3>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Z:</th>
+				<th>do:</th>
+				<th>ilość pasażerów</th>
+				<th>Data</th>
+				<th>Imię i nazwisko</th>
+				<th>Telefon</th>
+				<th>email</th>
+				
+	
+				
+				
+			</tr>
+		</thead>
+		<tbody>
+
+
+
+			<c:forEach var="reservation" items="${reservations}"
+				varStatus="status">
+				<tr>
+					<td>${status.index+1}</td>
+					<td>${reservation.startLocationR}</td>
+					<td>${reservation.destinationR}</td>
+					<td>${reservation.numberOfPeple}</td>
+					<td>${reservation.dateAndTimeOfService}</td>
+					<td>${reservation.firstName}  ${reservation.lastName}</td>
+					<td>${reservation.phone}</td>
+					<td>${reservation.email}</td>
+					
+					
+					
+				</tr>
+			</c:forEach>
+
+
+		</tbody>
+	</table>
+	
 </body>
 </html>
