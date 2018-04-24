@@ -10,6 +10,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>lista likalizacji początkowych</title>
 
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 <script type="text/javascript">
 	function populate(form) {
 
@@ -47,90 +50,146 @@
 </head>
 <body>
 
-
-	<h3>
-		<a href="admin">Panel administratora</a>
-	</h3>
+	<div class="container">
 
 
-	<h2>Zarezerwój transfer</h2>
+	<div align="right">
+		<h5><a href="admin">Panel administratora</a></h5>
+	</div>
+	
+
+
+	
+	
 	
 	<form:form name="startlocationform" modelAttribute="reservationForm"
-		method="post">
+		method="post" class="form-horizontal">
 
-		Wyjazd z: 
+		<legend>Zarezerwój transfer</legend>
 		
-		<form:select id="select1" name="select1" path="startLocationR"
-			onchange="populate(this.form)">
-			<form:option value="NONE" label="--- Select ---" />
-			<form:options items="${localizationList}" />
-		</form:select>
-		<c:if test="${pageContext.request.method=='POST'}">
-			<form:errors path="startLocationR" />
-		</c:if>
 		
-		<form:errors path="startLocationR" />
 		
-		</br>
-		Przyjazd do:
-		<form:select id="select2" name="select2" path="destinationR">
-
-		</form:select>
-		<c:if test="${pageContext.request.method=='POST'}">
-			<form:errors path="destinationR" />
-		</c:if>
 		
-		<br />
-		</br>
-		Ilość pasażerów:
-		<form:input path="numberOfPeple" id="numberOfPeple"></form:input>
-		<c:if test="${pageContext.request.method=='POST'}">
-			<form:errors path="numberOfPeple" />
-		</c:if>
 		
-		 <br />
-		Data przejazdu:
-		<%--
-		<form:input path="dateAndTimeOfService" id="dateAndTimeOfService"></form:input>
-		<c:if test="${pageContext.request.method=='POST'}">
-			<form:errors path="dateAndTimeOfService" />
-		</c:if> --%>
+					<div class="control-group">
+							<label class="control-label">Wyjazd z</label>
+							<div class="controls">
+								<form:select id="select1" name="select1" path="startLocationR"
+			onchange="populate(this.form)"	class="input-xlarge">
+									<form:option value="NONE" label="--- Select ---" />
+									<form:options items="${localizationList}" />
+								</form:select>
+								<form:errors path="startLocationR" />
+							</div>
+						</div>
 		
-		<br />
-		<br />
-		Imię:
-		<form:input path="firstName" id="firstName"></form:input>
-		<c:if test="${pageContext.request.method=='POST'}">
-			<form:errors path="firstName" />
-		</c:if>
 		
-		<br />
-		Nazwisko:
-		<form:input path="lastName" id="lastName"></form:input>
-		<c:if test="${pageContext.request.method=='POST'}">
-			<form:errors path="lastName" />
-		</c:if>
 		
-		<br />
-		Telefon Kontaktowy pasażera:
-		<form:input path="phone" id="phone"></form:input>
-		<c:if test="${pageContext.request.method=='POST'}">
-			<form:errors path="phone" />
-		</c:if>
+	
 		
-		<br />
-		Email:
-		<form:input path="email" id="email"></form:input>
-		<c:if test="${pageContext.request.method=='POST'}">
-			<form:errors path="email" />
-		</c:if>
+		
+					<div class="control-group">
+							<label class="control-label" >Przyjazd do</label>
+							<div class="controls">
+								<form:select id="select2" name="select2" path="destinationR"
+									class="input-xlarge">
 			
+								</form:select>
+								<c:if test="${pageContext.request.method=='POST'}">
+									<form:errors path="destinationR" />
+								</c:if>
+							</div>
+					</div>
 		
+					<br /> 
+							
+					<div class="control-group">
+							<label class="control-label">Ilość pasażerów</label>
+							<div class="controls">
+								<form:input class="input-xlarge" path="numberOfPeple" id="numberOfPeple"></form:input>
+								<c:if test="${pageContext.request.method=='POST'}">
+									<p class="help-block">
+										<form:errors path="numberOfPeple" />
+									</p>
+								</c:if>
+							</div>
+					</div>
+		
+		
+	
+	
+				<div class="control-group">
+							<label class="control-label">Data przejazdu</label>
+							<div class="controls">
+								<%-- 
+								<form:input class="input-xlarge" path="dateAndTimeOfService" id="dateAndTimeOfService"></form:input>
+								<c:if test="${pageContext.request.method=='POST'}">
+									<p class="help-block">
+										<form:errors path="dateAndTimeOfService" />
+									</p>
+								</c:if> 
+								--%>
+							</div>
+					</div>
+		
+				<br /> 
+	
 
-		<br />
-		<br />
-		<input type="submit" value="Dodaj" />
+		
+					<div class="control-group">
+							<label class="control-label">Imię</label>
+							<div class="controls">
+								<form:input class="input-xlarge" path="firstName" id="firstName"></form:input>
+								<c:if test="${pageContext.request.method=='POST'}">
+									<p class="help-block">
+										<form:errors path="firstName" />
+									</p>
+								</c:if>
+							</div>
+					</div>
+					
+					<div class="control-group">
+							<label class="control-label">Nazwisko</label>
+							<div class="controls">
+								<form:input class="input-xlarge" path="lastName" id="lastName"></form:input>
+								<c:if test="${pageContext.request.method=='POST'}">
+									<p class="help-block">
+										<form:errors path="lastName" />
+									</p>
+								</c:if>
+							</div>
+					</div>
+					
+					<div class="control-group">
+							<label class="control-label">Telefon kontaktowy pasażera</label>
+							<div class="controls">
+								<form:input class="input-xlarge" path="phone" id="phone"></form:input>
+								<c:if test="${pageContext.request.method=='POST'}">
+									<p class="help-block">
+										<form:errors path="phone" />
+									</p>
+								</c:if>
+							</div>
+					</div>
+					
+					<div class="control-group">
+							<label class="control-label">Email</label>
+							<div class="controls">
+								<form:input class="input-xlarge" path="email" id="email"></form:input>
+								<c:if test="${pageContext.request.method=='POST'}">
+									<p class="help-block">
+										<form:errors path="email" />
+									</p>
+								</c:if>
+							</div>
+					</div>
+
+		
+				<br /> 
+		<input type="submit" value="Dodaj" class="btn btn-primary"  />
 	</form:form>
+	
+</div>
 
 	<%-- <form:form name="reservationForm" modelAttribute="reservationForm"
 		method="post">

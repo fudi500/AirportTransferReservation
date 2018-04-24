@@ -9,77 +9,123 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>lista likalizacji początkowych</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+ 
+    <div class="container">
+
+          <div class="jumbotron">
 
 
+				<form:form modelAttribute="destinationForm" method="post"
+					class="form-horizontal">
 
-	<c:choose>
-		<c:when test="${userForm['new']}">
-			<h1>Dodaj połączenie</h1>
-		</c:when>
-		<c:otherwise>
-			<h1>Edytuj połączenie</h1>
-		</c:otherwise>
-	</c:choose>
-	<br />
+					<fieldset>
 
-	<form:form modelAttribute="destinationForm" method="post">
+						<!-- Form Name -->
+						<legend>Dodaj połączenie</legend>
+						<%-- 	<c:choose>
+					<c:when test="${destinationForm['new']}">
+						<h1>Dodaj połączenie</h1>
+					</c:when>
+					<c:otherwise>
+						<h1>Edytuj połączenie</h1>
+					</c:otherwise>
+				</c:choose>
+				<br /> --%>
 
-		Połączenie z: 
-		<form:select path="localizationID" >
-			<%-- <form:option value="NONE" label="--- Select ---" /> --%>
-			<form:options items="${localizationList}" />
-		</form:select>
-		<form:errors path="localizationID"/>
-		
-		<br /> 
-		
-		
-		Do: 
-		<form:input path="destinationName" id="destinationName"></form:input>
-		<c:if test="${pageContext.request.method=='POST'}">
-			<form:errors path="destinationName" />
-		</c:if>
-		<br /> 
-		
-		
-		
-		 
-		Cena dla ilości osób: <br /> 
-		od 1 do 3: 
-		<form:input path="price1to3" id="price1to3"></form:input>
-		<c:if test="${pageContext.request.method=='POST'}">
-			<form:errors path="price1to3" />
-		</c:if>
-		<br />
-		od 4 do 8: 
-		<form:input path="price4to8" id="price4to8"></form:input>
-		<c:if test="${pageContext.request.method=='POST'}">
-			<form:errors path="price4to8" />
-		</c:if>
-		<br />
-		
-		od 9 do 16: 
-		<form:input path="price9to16" id="price9to16"></form:input>
-		<c:if test="${pageContext.request.method=='POST'}">
-			<form:errors path="price9to16" />
-		</c:if>
-		<br />
-		
-		od 17 do 40:
-		<form:input path="price17to40" id="price17to40"></form:input>
-		<c:if test="${pageContext.request.method=='POST'}">
-			<form:errors path="price17to40" />
-		</c:if>
-		<br />
-		
+						<div class="control-group">
+							<label class="control-label" for="localizationID">Połączenie
+								z</label>
+							<div class="controls">
+								<form:select placeholder="--- Select ---" path="localizationID"
+									class="input-xlarge">
+									<form:option value="NONE" label="--- Select ---" />
+									<form:options items="${localizationList}" />
+								</form:select>
+								<form:errors path="localizationID" />
+							</div>
+						</div>
 
-		<input type="submit" value="Wyślij formularz" />
-	</form:form>
+						<div class="control-group">
+							<label class="control-label"> Do</label>
+							<div class="controls">
+								<form:input class="input-xlarge" path="destinationName"
+									id="destinationName" placeholder="Balice Airport"></form:input>
+								<c:if test="${pageContext.request.method=='POST'}">
+									<p class="help-block">
+										<form:errors path="destinationName" />
+									</p>
+								</c:if>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label"> od 1 do 3</label>
+							<div class="controls">
+								<form:input class="input-xlarge" path="price1to3" id="price1to3"></form:input>
+								<c:if test="${pageContext.request.method=='POST'}">
+									<p class="help-block">
+										<form:errors path="price1to3" />
+									</p>
+								</c:if>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label"> od 4 do 8:</label>
+							<div class="controls">
+								<form:input class="input-xlarge" path="price4to8" id="price4to8"></form:input>
+								<c:if test="${pageContext.request.method=='POST'}">
+									<p class="help-block">
+										<form:errors path="price4to8" />
+									</p>
+								</c:if>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label"> od 9 do 16</label>
+							<div class="controls">
+								<form:input class="input-xlarge" path="price9to16"
+									id="price9to16"></form:input>
+								<c:if test="${pageContext.request.method=='POST'}">
+									<p class="help-block">
+										<form:errors path="price9to16" />
+									</p>
+								</c:if>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label"> od 17 do 40</label>
+							<div class="controls">
+								<form:input class="input-xlarge" path="price17to40"
+									id="price17to40"></form:input>
+								<c:if test="${pageContext.request.method=='POST'}">
+									<p class="help-block">
+										<form:errors path="price17to40" />
+									</p>
+								</c:if>
+							</div>
+						</div>
+	
+						<br /> <input type="submit" value="Wyślij formularz"
+							class="btn btn-primary" />
+			
+			</form:form>
 
 
-
-
+		</div>
+	</div>
+	
 </body>
 </html>
