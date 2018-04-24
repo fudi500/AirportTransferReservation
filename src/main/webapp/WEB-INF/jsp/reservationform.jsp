@@ -12,40 +12,58 @@
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	
+
+<!--  jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
 
 <script type="text/javascript">
 	function populate(form) {
-
 		var listOfObjects = [];
-
 		<c:forEach items="${DLlist}" var="item">
-
 		var singleObj = {}
 		singleObj['localizationID'] = "${item.localizationID}"
 		singleObj['destinationID'] = "${item.destinationID}";
 		singleObj['destinationName'] = "${item.destinationName}";
 		listOfObjects.push(singleObj);
-
 		</c:forEach>
 		
-
 	     form.select2.innerHTML = "";
 		
 		
-
 		for (var i = 0; i < listOfObjects.length; i++) {
-
 			if (form.select1.value == listOfObjects[i].localizationID) {
 				var newOption = document.createElement("option");
-
 				newOption.value = listOfObjects[i].destinationID;
 				newOption.innerHTML = listOfObjects[i].destinationName;
 				form.select2.options.add(newOption);
 			}
 		}
-
 	}
 </script>
+
+<script>
+    $(document).ready(function(){
+        var date_input=$('input[name="dateAndTimeOfService"]'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+</script>
+
 
 </head>
 <body>
@@ -121,16 +139,23 @@
 				<div class="control-group">
 							<label class="control-label">Data przejazdu</label>
 							<div class="controls">
-								<%-- 
-								<form:input class="input-xlarge" path="dateAndTimeOfService" id="dateAndTimeOfService"></form:input>
+								
+								<form:input class="input-xlarge"  path="dateAndTimeOfService" id="dateAndTimeOfService" 
+											name="dateAndTimeOfService" placeholder="MM/DD/YYY" type="text"></form:input>
 								<c:if test="${pageContext.request.method=='POST'}">
 									<p class="help-block">
 										<form:errors path="dateAndTimeOfService" />
 									</p>
 								</c:if> 
-								--%>
+								
 							</div>
 					</div>
+					
+			<!-- 		 <div class="form-group"> Date input
+        <label class="control-label" for="date">Date</label>
+        <input class="form-control" id="dateAndTimeOfService" name="dateAndTimeOfService" placeholder="MM/DD/YYY" type="text"/>
+      </div>
+					 -->
 		
 				<br /> 
 	
@@ -193,7 +218,6 @@
 
 	<%-- <form:form name="reservationForm" modelAttribute="reservationForm"
 		method="post">
-
 		Połączenie z: 
 		<form:select path="startLocationR" onchange="populate(this.form)">
 			<form:option value="NONE" label="--- Select ---" />
@@ -203,10 +227,6 @@
 		<form:errors path="startLocationR" />
 		<input type="submit" value="Dodaj" />
 	</form:form>
-
  --%>
 </body>
-</html>
-
-
-
+</html> 

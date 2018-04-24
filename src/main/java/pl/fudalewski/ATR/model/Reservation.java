@@ -1,12 +1,16 @@
 package pl.fudalewski.ATR.model;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Reservation {
@@ -25,7 +29,10 @@ public class Reservation {
 		@NotNull
 		private int numberOfPeple;
 		
+		private double price;
 		
+		
+		@DateTimeFormat(pattern = "dd/MM/yyyy")
 		private Date dateAndTimeOfService;
 		
 		
