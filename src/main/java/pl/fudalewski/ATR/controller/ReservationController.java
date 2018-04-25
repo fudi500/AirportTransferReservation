@@ -53,14 +53,15 @@ public class ReservationController {
 			return "reservationform";
 		} else {
 			// zamiana id startlocation na nazwę
-			reservationForm.setStartLocationR(reservationService
+		/*	reservationForm.setStartLocationR(reservationService
 					.findStartLocationByID(Long.parseLong(reservationForm.getStartLocationR())).getName());
 
 			// zamiana id destination na nazwę
 			reservationForm.setDestinationR(reservationService
 					.findDestinationByID(Long.parseLong(reservationForm.getDestinationR())).getDestinationName());
-
+*/
 			reservationService.create(reservationForm);
+			model.addAttribute("reservation", reservationForm);
 			return "success";
 
 		}

@@ -7,9 +7,14 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -27,14 +32,20 @@ public class Reservation {
 		private String destinationR;
 		
 		@NotNull
+		@Range(min=1, max=100)
 		private int numberOfPeple;
 		
 		private double price;
 		
 		
+		@Future
 		@DateTimeFormat(pattern = "dd/MM/yyyy")
-		private Date dateAndTimeOfService;
+		@Temporal(TemporalType.DATE)
+		private Date dateReservation;
 		
+		@DateTimeFormat(pattern = "HH:mm")
+		@Temporal(TemporalType.TIME)
+		private Date timeReservation;
 		
 		@NotEmpty
 		private String firstName;
@@ -47,6 +58,7 @@ public class Reservation {
 		
 		@NotEmpty
 		private String email;
+		
 		
 		
 		public String getStartLocationR() {
@@ -67,12 +79,7 @@ public class Reservation {
 		public void setNumberOfPeple(int numberOfPeple) {
 			this.numberOfPeple = numberOfPeple;
 		}
-		public Date getDateAndTimeOfService() {
-			return dateAndTimeOfService;
-		}
-		public void setDateAndTimeOfService(Date dateAndTimeOfService) {
-			this.dateAndTimeOfService = dateAndTimeOfService;
-		}
+	
 		public String getFirstName() {
 			return firstName;
 		}
@@ -96,6 +103,24 @@ public class Reservation {
 		}
 		public void setEmail(String email) {
 			this.email = email;
+		}
+		public Date getDateReservation() {
+			return dateReservation;
+		}
+		public void setDateReservation(Date dateReservation) {
+			this.dateReservation = dateReservation;
+		}
+		public Date getTimeReservation() {
+			return timeReservation;
+		}
+		public void setTimeReservation(Date timeReservation) {
+			this.timeReservation = timeReservation;
+		}
+		public double getPrice() {
+			return price;
+		}
+		public void setPrice(double price) {
+			this.price = price;
 		}
 	
 	

@@ -31,7 +31,42 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Transactional
 	public Reservation create(Reservation reservation) {
+		
+		Destination destination = findDestinationByID(Long.parseLong(reservation.getDestinationR()));
+
+		reservation.setPrice(countPrice(reservation.getNumberOfPeple(),destination));
+		
+		// zamiana id startlocation na nazwę
+		StartLocation startLocation = findStartLocationByID(Long.parseLong(reservation.getStartLocationR()));
+		reservation.setStartLocationR(startLocation.getName());
+
+		// zamiana id destination na nazwę
+		reservation.setDestinationR(destination.getDestinationName());
+
 		return reservationDAO.save(reservation);
+		
+		
+	}
+
+	private double countPrice(int numberOfPeple, Destination destination) {
+		
+		if (numberOfPeple > 0 && numberOfPeple < 4) {
+			return destination.getPrice1to3();
+			
+		} else if (numberOfPeple < 9 ) {
+			return destination.getPrice4to8();
+			
+		} else if (numberOfPeple < 17 ) {
+			return destination.getPrice9to16();
+			
+		} else if (numberOfPeple < 40 ) {
+			return destination.getPrice17to40();
+			
+		} else {
+			 
+			
+			return destination.getPrice17to40() * (numberOfPeple / 39  + 1) ; //ile autosuow
+		}
 	}
 
 	@Transactional

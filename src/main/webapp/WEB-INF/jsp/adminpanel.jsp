@@ -36,7 +36,7 @@
 					<th>Cena dla osób od 1 do 3</th>
 					<th>od 4 do 8</th>
 					<th>od 9 do 16</th>
-					<th>od 17 do 50</th>
+					<th>od 17 do 40</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -71,7 +71,9 @@
 					<th>Z:</th>
 					<th>do:</th>
 					<th>ilość pasażerów</th>
+					<th>Cena</th>
 					<th>Data</th>
+					<th>Godzina</th>
 					<th>Imię i nazwisko</th>
 					<th>Telefon</th>
 					<th>email</th>
@@ -85,7 +87,9 @@
 						<td>${reservation.startLocationR}</td>
 						<td>${reservation.destinationR}</td>
 						<td>${reservation.numberOfPeple}</td>
-						<td>${reservation.dateAndTimeOfService}</td>
+						<td>${reservation.price}</td>
+						<td>${reservation.dateReservation}</td>
+						<td>${reservation.timeReservation}</td>
 						<td>${reservation.firstName}${reservation.lastName}</td>
 						<td>${reservation.phone}</td>
 						<td>${reservation.email}</td>

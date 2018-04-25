@@ -12,18 +12,22 @@
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	
-	
+
+
 
 <!--  jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+<link rel="stylesheet"
+	href="https://formden.com/static/cdn/bootstrap-iso.css" />
 
 <!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
 
 <script type="text/javascript">
@@ -36,10 +40,9 @@
 		singleObj['destinationName'] = "${item.destinationName}";
 		listOfObjects.push(singleObj);
 		</c:forEach>
-		
-	     form.select2.innerHTML = "";
-		
-		
+
+		form.select2.innerHTML = "";
+
 		for (var i = 0; i < listOfObjects.length; i++) {
 			if (form.select1.value == listOfObjects[i].localizationID) {
 				var newOption = document.createElement("option");
@@ -52,16 +55,18 @@
 </script>
 
 <script>
-    $(document).ready(function(){
-        var date_input=$('input[name="dateAndTimeOfService"]'); //our date input has the name "date"
-        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
-            format: 'dd/mm/yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
+	$(document).ready(
+			function() {
+				var date_input = $('input[name="dateReservation"]'); //our date input has the name "date"
+				var container = $('.bootstrap-iso form').length > 0 ? $(
+						'.bootstrap-iso form').parent() : "body";
+				date_input.datepicker({
+					format : 'dd/mm/yyyy',
+					container : container,
+					todayHighlight : true,
+					autoclose : true,
+				})
+			})
 </script>
 
 
@@ -71,150 +76,178 @@
 	<div class="container">
 
 
-	<div align="right">
-		<h5><a href="admin">Panel administratora</a></h5>
-	</div>
-	
+		<div align="right">
+			<h5>
+				<a href="admin">Panel administratora</a>
+			</h5>
+		</div>
 
 
-	
-	
-	
-	<form:form name="startlocationform" modelAttribute="reservationForm"
-		method="post" class="form-horizontal">
 
-		<legend>Zarezerwój transfer</legend>
-		
-		
-		
-		
-		
-					<div class="control-group">
-							<label class="control-label">Wyjazd z</label>
-							<div class="controls">
-								<form:select id="select1" name="select1" path="startLocationR"
-			onchange="populate(this.form)"	class="input-xlarge">
-									<form:option value="NONE" label="--- Select ---" />
-									<form:options items="${localizationList}" />
-								</form:select>
-								<form:errors path="startLocationR" />
-							</div>
-						</div>
-		
-		
-		
-	
-		
-		
-					<div class="control-group">
-							<label class="control-label" >Przyjazd do</label>
-							<div class="controls">
-								<form:select id="select2" name="select2" path="destinationR"
-									class="input-xlarge">
-			
-								</form:select>
-								<c:if test="${pageContext.request.method=='POST'}">
-									<form:errors path="destinationR" />
-								</c:if>
-							</div>
+		<div class="col-md-8 order-md-1">
+
+
+			<form:form name="startlocationform" modelAttribute="reservationForm"
+				method="post" class="form-horizontal">
+
+				<legend>Zarezerwój transfer</legend>
+
+
+
+
+
+				<div class="control-group" class="mb-3">
+					<label class="control-label">Wyjazd z</label>
+					<div class="controls">
+						<form:select id="select1" name="select1" path="startLocationR"
+							onchange="populate(this.form)" class="form-control">
+							<form:option value="NONE" label="--- Select ---" />
+							<form:options items="${localizationList}" />
+						</form:select>
+						<form:errors path="startLocationR" />
 					</div>
-		
-					<br /> 
-							
-					<div class="control-group">
-							<label class="control-label">Ilość pasażerów</label>
-							<div class="controls">
-								<form:input class="input-xlarge" path="numberOfPeple" id="numberOfPeple"></form:input>
-								<c:if test="${pageContext.request.method=='POST'}">
-									<p class="help-block">
-										<form:errors path="numberOfPeple" />
-									</p>
-								</c:if>
-							</div>
+				</div>
+
+
+
+
+
+
+				<div class="control-group" class="mb-3">
+					<label class="control-label">Przyjazd do</label>
+					<div class="controls">
+						<form:select id="select2" name="select2" path="destinationR"
+							class="form-control">
+
+						</form:select>
+						<c:if test="${pageContext.request.method=='POST'}">
+							<form:errors path="destinationR" />
+						</c:if>
 					</div>
+				</div>
+
+				<br />
+
 		
-		
-	
-	
+
+
 				<div class="control-group">
-							<label class="control-label">Data przejazdu</label>
-							<div class="controls">
-								
-								<form:input class="input-xlarge"  path="dateAndTimeOfService" id="dateAndTimeOfService" 
-											name="dateAndTimeOfService" placeholder="MM/DD/YYY" type="text"></form:input>
-								<c:if test="${pageContext.request.method=='POST'}">
-									<p class="help-block">
-										<form:errors path="dateAndTimeOfService" />
-									</p>
-								</c:if> 
-								
-							</div>
-					</div>
-					
-			<!-- 		 <div class="form-group"> Date input
-        <label class="control-label" for="date">Date</label>
-        <input class="form-control" id="dateAndTimeOfService" name="dateAndTimeOfService" placeholder="MM/DD/YYY" type="text"/>
-      </div>
-					 -->
-		
-				<br /> 
-	
+					 <div class="col-md-6">
+				
+					<label class="control-label">Data przejazdu</label>
+					<div class="controls">
 
-		
-					<div class="control-group">
-							<label class="control-label">Imię</label>
-							<div class="controls">
-								<form:input class="input-xlarge" path="firstName" id="firstName"></form:input>
-								<c:if test="${pageContext.request.method=='POST'}">
-									<p class="help-block">
-										<form:errors path="firstName" />
-									</p>
-								</c:if>
-							</div>
-					</div>
-					
-					<div class="control-group">
-							<label class="control-label">Nazwisko</label>
-							<div class="controls">
-								<form:input class="input-xlarge" path="lastName" id="lastName"></form:input>
-								<c:if test="${pageContext.request.method=='POST'}">
-									<p class="help-block">
-										<form:errors path="lastName" />
-									</p>
-								</c:if>
-							</div>
-					</div>
-					
-					<div class="control-group">
-							<label class="control-label">Telefon kontaktowy pasażera</label>
-							<div class="controls">
-								<form:input class="input-xlarge" path="phone" id="phone"></form:input>
-								<c:if test="${pageContext.request.method=='POST'}">
-									<p class="help-block">
-										<form:errors path="phone" />
-									</p>
-								</c:if>
-							</div>
-					</div>
-					
-					<div class="control-group">
-							<label class="control-label">Email</label>
-							<div class="controls">
-								<form:input class="input-xlarge" path="email" id="email"></form:input>
-								<c:if test="${pageContext.request.method=='POST'}">
-									<p class="help-block">
-										<form:errors path="email" />
-									</p>
-								</c:if>
-							</div>
-					</div>
+						<form:input class="form-control" path="dateReservation"
+							id="dateReservation" name="dateAndTimeOfService"
+							placeholder="DD/MM/YYY" type="text"></form:input>
+						<c:if test="${pageContext.request.method=='POST'}">
+							<p class="help-block">
+								<form:errors path="dateReservation" />
+							</p>
+						</c:if>
 
-		
-				<br /> 
-		<input type="submit" value="Dodaj" class="btn btn-primary"  />
-	</form:form>
-	
-</div>
+					</div>
+				</div>
+				</div>
+
+				<div class="control-group">
+					<div class="col-md-6">
+
+						<label class="control-label">Godzina</label>
+						<div class="controls">
+							<form:input class="form-control" path="timeReservation"
+								id="timeReservation" placeholder="HH:mm"></form:input>
+							<c:if test="${pageContext.request.method=='POST'}">
+								<p class="help-block">
+									<form:errors path="timeReservation" />
+								</p>
+							</c:if>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="control-group" class="mb-3">
+					<label class="control-label">Ilość pasażerów</label>
+					<div class="controls">
+						<form:input class="form-control" path="numberOfPeple"
+							id="numberOfPeple"></form:input>
+						<c:if test="${pageContext.request.method=='POST'}">
+							<p class="help-block">
+								<form:errors path="numberOfPeple" />
+							</p>
+						</c:if>
+					</div>
+				</div>
+				
+
+
+
+				<br />
+				<br />
+
+
+
+				<div class="control-group">
+				<div class="col-md-6">
+					<label class="control-label">Imię</label>
+					<div class="controls">
+						<form:input class="form-control" path="firstName" id="firstName"></form:input>
+						<c:if test="${pageContext.request.method=='POST'}">
+							<p class="help-block">
+								<form:errors path="firstName" />
+							</p>
+						</c:if>
+					</div>
+				</div>
+				</div>
+
+				<div class="control-group">
+				<div class="col-md-6">
+					<label class="control-label">Nazwisko</label>
+					<div class="controls">
+						<form:input class="form-control" path="lastName" id="lastName"></form:input>
+						<c:if test="${pageContext.request.method=='POST'}">
+							<p class="help-block">
+								<form:errors path="lastName" />
+							</p>
+						</c:if>
+					</div>
+				</div>
+				</div>
+
+				<div class="control-group" class="mb-3">
+					<label class="control-label">Telefon kontaktowy pasażera</label>
+					<div class="controls">
+						<form:input class="form-control" path="phone" id="phone"></form:input>
+						<c:if test="${pageContext.request.method=='POST'}">
+							<p class="help-block">
+								<form:errors path="phone" />
+							</p>
+						</c:if>
+					</div>
+				</div>
+				
+
+				<div class="control-group" class="mb-3">
+					<label class="control-label">Email</label>
+					<div class="controls">
+						<form:input class="form-control" path="email" id="email"></form:input>
+						<c:if test="${pageContext.request.method=='POST'}">
+							<p class="help-block">
+								<form:errors path="email" />
+							</p>
+						</c:if>
+					</div>
+				</div>
+
+
+				<br />
+				<input type="submit" value="Dodaj" class="btn btn-primary" />
+			</form:form>
+		</div>
+
+	</div>
 
 	<%-- <form:form name="reservationForm" modelAttribute="reservationForm"
 		method="post">
@@ -229,4 +262,4 @@
 	</form:form>
  --%>
 </body>
-</html> 
+</html>
