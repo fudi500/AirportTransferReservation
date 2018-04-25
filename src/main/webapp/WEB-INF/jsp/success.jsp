@@ -4,6 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -42,11 +44,12 @@
 				</tr>
 				<tr>
 					<th scope="row">Data</th>
-					<td>${reservation.dateReservation}</td>
+					<td> <fmt:formatDate pattern = "yyyy-MM-dd" value = "${reservation.dateReservation}" />    </td>
 				</tr>
 				<tr>
 					<th scope="row">godzina</th>
-					<td>${reservation.timeReservation}</td>
+					<td> <fmt:formatDate pattern = "HH:mm" value = "${reservation.timeReservation}" />    </td>
+		
 				</tr>
 				<tr>
 					<th scope="row">imie i nazwisko</th>

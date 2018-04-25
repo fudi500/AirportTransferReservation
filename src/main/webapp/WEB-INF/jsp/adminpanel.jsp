@@ -20,124 +20,134 @@
 </head>
 <body>
 
-	<div class="container">
+
 
 	<div class="container">
-		<h2>Panel administratora</h2>
-		<h3>Połączenia</h3>
-		<p>Tabela przedstawia atualne połączenia</p>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>id</th>
-					<th>połączenie z:</th>
-					<th>do:</th>
-					<th>Cena dla osób od 1 do 3</th>
-					<th>od 4 do 8</th>
-					<th>od 9 do 16</th>
-					<th>od 17 do 40</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="poloczenie" items="${destinations}"
-					varStatus="status">
+
+		<div align="center">
+			<a href="http://localhost:8080" class="btn btn-default" role="button">Rezerwacja
+				- strona główna</a>
+		</div>
+
+
+		<div class="container">
+
+
+			<h2>Panel administratora</h2>
+			<h3>Połączenia</h3>
+			<p>Tabela przedstawia atualne połączenia</p>
+			<table class="table table-striped">
+				<thead>
 					<tr>
-						<td>${status.index+1}</td>
-						<td>${poloczenie.id}</td>
-						<td>${poloczenie.localizationName}<br />
-						<td>${poloczenie.destinationName}</td>
-						<td>${poloczenie.price1to3}</td>
-						<td>${poloczenie.price4to8}</td>
-						<td>${poloczenie.price9to16}</td>
-						<td>${poloczenie.price17to40}</td>
-						<td><a href="poloczenia/${poloczenie.id}/edit">Edytuj </a></td>
-						<td><a href="poloczenia/${poloczenie.id}/delete">Usuń</a></td>
+						<th>#</th>
+						<th>id</th>
+						<th>połączenie z:</th>
+						<th>do:</th>
+						<th>Cena dla osób od 1 do 3</th>
+						<th>od 4 do 8</th>
+						<th>od 9 do 16</th>
+						<th>od 17 do 40</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<a href="poloczenia/add">Dodaj nowe połączenie</a>
-	</div>
-
-
-	<div class="container">
-		<h3>Rezerwacje</h3>
-		<p>Nadchodzące rezerwacje</p>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Z:</th>
-					<th>do:</th>
-					<th>ilość pasażerów</th>
-					<th>Cena</th>
-					<th>Data</th>
-					<th>Godzina</th>
-					<th>Imię i nazwisko</th>
-					<th>Telefon</th>
-					<th>email</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="reservation" items="${reservations}"
-					varStatus="status">
-					<tr>
-						<td>${status.index+1}</td>
-						<td>${reservation.startLocationR}</td>
-						<td>${reservation.destinationR}</td>
-						<td>${reservation.numberOfPeple}</td>
-						<td>${reservation.price}</td>
-						<td>${reservation.dateReservation}</td>
-						<td>${reservation.timeReservation}</td>
-						<td>${reservation.firstName}${reservation.lastName}</td>
-						<td>${reservation.phone}</td>
-						<td>${reservation.email}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
-
-
-	<div class="container">
-		<h3>Lokalizacje poczatkowe</h3>
-		<p>Ten element zostanie prawdopodobnie przeniesiony do formularza
-			dodawania nowego poloczenia</p>
-		<div class="row">
-			<div class="col-sm-6">
-				<table class="table table-striped">
-					<thead>
+				</thead>
+				<tbody>
+					<c:forEach var="poloczenie" items="${destinations}"
+						varStatus="status">
 						<tr>
-							<th>#</th>
-							<th>nazwa</th>
-							<th></th>
+							<td>${status.index+1}</td>
+							<td>${poloczenie.id}</td>
+							<td>${poloczenie.localizationName}<br />
+							<td>${poloczenie.destinationName}</td>
+							<td>${poloczenie.price1to3}</td>
+							<td>${poloczenie.price4to8}</td>
+							<td>${poloczenie.price9to16}</td>
+							<td>${poloczenie.price17to40}</td>
+							<td><a href="poloczenia/${poloczenie.id}/edit">Edytuj </a></td>
+							<td><a href="poloczenia/${poloczenie.id}/delete">Usuń</a></td>
 						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="lolalizacja" items="${startlocations}"
-							varStatus="status">
+					</c:forEach>
+				</tbody>
+			</table>
+			<a href="poloczenia/add">Dodaj nowe połączenie</a>
+		</div>
+
+
+		<div class="container">
+			<h3>Rezerwacje</h3>
+			<p>Nadchodzące rezerwacje</p>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Z:</th>
+						<th>do:</th>
+						<th>ilość pasażerów</th>
+						<th>Cena</th>
+						<th>Data</th>
+						<th>Godzina</th>
+						<th>Imię i nazwisko</th>
+						<th>Telefon</th>
+						<th>email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="reservation" items="${reservations}"
+						varStatus="status">
+						<tr>
+							<td>${status.index+1}</td>
+							<td>${reservation.startLocationR}</td>
+							<td>${reservation.destinationR}</td>
+							<td>${reservation.numberOfPeple}</td>
+							<td>${reservation.price}</td>
+							<td>${reservation.dateReservation}</td>
+							<td>${reservation.timeReservation}</td>
+							<td>${reservation.firstName}${reservation.lastName}</td>
+							<td>${reservation.phone}</td>
+							<td>${reservation.email}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+
+
+		<div class="container">
+			<h3>Lokalizacje poczatkowe</h3>
+			<p>Ten element zostanie prawdopodobnie przeniesiony do formularza
+				dodawania nowego poloczenia</p>
+			<div class="row">
+				<div class="col-sm-6">
+					<table class="table table-striped">
+						<thead>
 							<tr>
-								<td>${status.index+1}</td>
-								<td>${lolalizacja.name}</td>
-								<td><a href="delete-${lolalizacja.id}">Usuń</a><br />
+								<th>#</th>
+								<th>nazwa</th>
+								<th></th>
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-			<div class="col-sm-6">
-				Dodaj nową lokalizację początkową
-				<form:form modelAttribute="startlocation" method="post">
+						</thead>
+						<tbody>
+							<c:forEach var="lolalizacja" items="${startlocations}"
+								varStatus="status">
+								<tr>
+									<td>${status.index+1}</td>
+									<td>${lolalizacja.name}</td>
+									<td><a href="delete-${lolalizacja.id}">Usuń</a><br />
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-sm-6">
+					Dodaj nową lokalizację początkową
+					<form:form modelAttribute="startlocation" method="post">
 		Nazwa: <form:input path="name" id="name"></form:input>
-					<input type="submit" value="Dodaj" />
-				</form:form>
+						<input type="submit" value="Dodaj" />
+					</form:form>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-	
-	
-	
+
+
+
 </body>
 </html>
