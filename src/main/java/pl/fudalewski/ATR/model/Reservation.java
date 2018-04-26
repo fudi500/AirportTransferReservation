@@ -9,10 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -54,9 +56,11 @@ public class Reservation {
 		private String lastName;
 		
 		@NotEmpty
+		@Pattern(regexp="([0-9]{9})")
 		private String phone;
 		
 		@NotEmpty
+		@Email
 		private String email;
 		
 		
